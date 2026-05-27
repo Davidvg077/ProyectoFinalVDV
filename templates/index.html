@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ValeoControlX</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Inventario ValeoControlX</h1>
+
+    <div class="card">
+
+        <h2>Categorías</h2>
+
+        <ul>
+            {% for categoria in categorias %}
+                <li>{{ categoria.nombre }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Productos</h2>
+
+        <table>
+
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Stock</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+            </tr>
+
+            {% for producto in productos %}
+
+            <tr>
+
+                <td>{{ producto.codigo }}</td>
+
+                <td>{{ producto.nombre }}</td>
+
+                <td>
+
+                    {% if producto.stock < 50 %}
+                        <span class="bajo-stock">
+                            {{ producto.stock }}
+                        </span>
+                    {% else %}
+                        <span class="alto-stock">
+                            {{ producto.stock }}
+                        </span>
+                    {% endif %}
+
+                </td>
+
+                <td>${{ producto.precio }}</td>
+
+                <td>{{ producto.categoria_id }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
